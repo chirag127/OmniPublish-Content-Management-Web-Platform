@@ -1,0 +1,87 @@
+name: CI
+
+# Controls when the action will run.
+# For PRs, it runs on push to the "main" branch and on pull request events.
+# For main/master branch, it runs on push and pull request events.
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel.
+jobs:
+  # This job builds and tests the application.
+  build-and-test:
+    # The type of runner that the job will run on.
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # Define the Node.js versions to test against.
+        node-version: [ "20", "22" ]
+        # Define Python versions to test against.
+        python-version: [ "3.10", "3.11", "3.12" ]
+
+    steps:
+      # Checks-out your repository into the temporary workspace.
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # Setup Node.js environment for each version in the matrix.
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      # Setup Python environment for each version in the matrix.
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip' # uses pip to cache virtualenv
+
+      # Install dependencies (Node.js).
+      - name: Install Node.js Dependencies
+        run: npm ci
+
+      # Install dependencies (Python).
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install uv
+          uv install --frozen
+
+      # Lint and format code using Ruff (Python).
+      - name: Lint and Format Python Code (Ruff)
+        run: |
+          uv run ruff check .
+          uv run ruff format .
+
+      # Lint and format code using Biome (JavaScript/TypeScript).
+      - name: Lint and Format JS/TS Code (Biome)
+        run: npx @biomejs/biome check --apply
+
+      # Run tests (Python).
+      - name: Run Python Tests (Pytest)
+        run: |
+          uv run pytest
+
+      # Run tests (JavaScript/TypeScript).
+      - name: Run Node.js Tests (Vitest)
+        run: npm run test
+
+      # TODO: Add E2E testing step if Playwright is integrated.
+      # - name: Run E2E Tests (Playwright)
+      #   run: npx playwright test
+
+      # TODO: Add build step if applicable.
+      # - name: Build Project
+      #   run: npm run build
+
+      # TODO: Add code coverage reporting if configured.
+      # - name: Upload coverage reports to Codecov
+      #   uses: codecov/codecov-action@v4
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
