@@ -1,0 +1,24 @@
+badges:
+  - name: Build Status
+    url: https://img.shields.io/github/actions/workflow/status/chirag127/OmniPublish-Content-Management-Web-Platform/ci.yml?style=flat-square&label=Build
+    markdown: "[![Build Status](https://img.shields.io/github/actions/workflow/status/chirag127/OmniPublish-Content-Management-Web-Platform/ci.yml?style=flat-square&label=Build)](https://github.com/chirag127/OmniPublish-Content-Management-Web-Platform/actions/workflows/ci.yml)"
+
+  - name: Code Coverage
+    url: https://img.shields.io/codecov/c/github/chirag127/OmniPublish-Content-Management-Web-Platform?style=flat-square&token=xxx
+    markdown: "[![Code Coverage](https://img.shields.io/codecov/c/github/chirag127/OmniPublish-Content-Management-Web-Platform?style=flat-square&token=xxx)](https://codecov.io/gh/chirag127/OmniPublish-Content-Management-Web-Platform)"
+
+  - name: Language
+    url: https://img.shields.io/github/languages/top/chirag127/OmniPublish-Content-Management-Web-Platform?style=flat-square
+    markdown: "[![Language](https://img.shields.io/github/languages/top/chirag127/OmniPublish-Content-Management-Web-Platform?style=flat-square)](https://github.com/chirag127/OmniPublish-Content-Management-Web-Platform)"
+
+  - name: Frameworks
+    url: https://img.shields.io/badge/Frameworks-TypeScript%20%7C%20Vite%20%7C%20TailwindCSS-blue?style=flat-square
+    markdown: "[![Frameworks](https://img.shields.io/badge/Frameworks-TypeScript%20%7C%20Vite%20%7C%20TailwindCSS-blue?style=flat-square)]()"
+
+  - name: License
+    url: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=flat-square
+    markdown: "[![License](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey?style=flat-square)](LICENSE)"
+
+  - name: GitHub Stars
+    url: https://img.shields.io/github/stars/chirag127/OmniPublish-Content-Management-Web-Platform?style=flat-square
+    markdown: "[![GitHub Stars](https://img.shields.io/github/stars/chirag127/OmniPublish-Content-Management-Web-Platform?style=flat-square)]()"
